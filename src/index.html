@@ -15,9 +15,57 @@
   rel="stylesheet"
 />
   </head>
+  <style>
+* {
+    box-sizing: border-box;
+  }
+  
+input {
+    width: 500px;
+    padding: 10px;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .gallery {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+  }
+  .photo-card {
+  width: 400px;
+}
+  .item {
+    display: block;
+    margin: 10px;
+    border: 2px solid rgb(182, 181, 181);
+  }
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px;
+    font-size: 15px;
+  }
+  .wrapper {
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+}
+  
+  .stats-item {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
   <body>
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
-    <include src="./partials/example.html"></include>
+    <!-- <include src="./partials/example.html"></include> -->
     <form class="search-form" id="search-form">
       <input
         type="text"
@@ -25,8 +73,10 @@
         autocomplete="off"
         placeholder="Search images..."
       />
+      <button type="submit"> искать </button>
+
     </form>
-    <button type="submit"> искать </button>
+    <!-- <button type="submit"> искать </button> -->
     <ul class="gallery">
       <!-- Список <li> с карточками изображений -->
     </ul>
