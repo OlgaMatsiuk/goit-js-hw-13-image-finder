@@ -7,6 +7,9 @@ import '../node_modules/@pnotify/core/dist/BrightTheme.css';
 import * as Confirm from '../node_modules/@pnotify/confirm';
 import '../node_modules/@pnotify/confirm/dist/PNotifyConfirm.css';
 
+import * as basicLightbox from 'basiclightbox';
+
+
 // const newsApiService = new NewsApiService();
 import hitsTpl from './templates/articles.hbs'
 
@@ -15,7 +18,9 @@ import hitsTpl from './templates/articles.hbs'
 const refs = {
     searchForm: document.querySelector('.search-form'),
     galleryContainer: document.querySelector('.gallery'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]')
+    loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+    galleryRef: document.querySelector('.gallery')
+
 };
 // const API_KEY = '21833579-dbfb00598a636f5e3a6a2045e';
 
@@ -42,6 +47,10 @@ function onSearch(e) {
 
 function onLoadMore() {
     apiService.fetchImages().then(appendImgMarkup);
+    galleryRef.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+    });
 
     // const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=1&per_page=12$key=${API_KEY}`;
     // fetch (url)
