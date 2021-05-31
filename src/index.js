@@ -8,26 +8,23 @@ import * as Confirm from '../node_modules/@pnotify/confirm';
 import '../node_modules/@pnotify/confirm/dist/PNotifyConfirm.css';
 
 import * as basicLightbox from 'basiclightbox';
+import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 
 
-// const newsApiService = new NewsApiService();
+
 import hitsTpl from './templates/articles.hbs'
 
-// const debounce = require('lodash.debounce');
 
 const refs = {
     searchForm: document.querySelector('.search-form'),
     galleryContainer: document.querySelector('.gallery'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]'),
-    galleryRef: document.querySelector('.gallery')
+    loadMoreBtn: document.querySelector('[data-action="load-more"]')
 
-};
-// const API_KEY = '21833579-dbfb00598a636f5e3a6a2045e';
+}
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-// let searchQuery='';
 
 function onSearch(e) {
     e.preventDefault();
@@ -35,27 +32,15 @@ function onSearch(e) {
 
     apiService.query = e.currentTarget.elements.query.value;
     apiService.resetPage();
-    // apiService.fetchImages().then(appendImgMarkup);
-    apiService.fetchImages().then(appendImgMarkup).catch(onError);
-
-
-    // const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=1&per_page=12$key=${API_KEY}`;
-    // fetch (url)
-    // .then (r => r.json())
-    // .then (console.log);
+    apiService.fetchImages().then(appendImgMarkup).catch(onError)
 }
 
 function onLoadMore() {
     apiService.fetchImages().then(appendImgMarkup);
-    galleryRef.scrollIntoView({
+    galleryContainer.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
-    });
-
-    // const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=1&per_page=12$key=${API_KEY}`;
-    // fetch (url)
-    // .then (r => r.json())
-    // .then (console.log);
+    })
 }
 function appendImgMarkup (hits){
     refs.galleryContainer.insertAdjacentHTML ('beforeend',hitsTpl(hits));
@@ -80,4 +65,18 @@ function onError() {
                 }]}]
         ])
     })
+}
+
+refs.galleryContainer.addEventListener('click', onImageClick);
+
+function onImageClick(event) {
+    const isImage = event.target.classList.contains('gallery-img');
+
+    if (!isImage) {
+        return;
+    }
+
+    const largeImageURL = event.target.getAttribute('data-source');
+    const instance = basicLightbox.create(`<img src="${largeImageURL}" width="800" height="600">`)
+    instance.show()
 }
