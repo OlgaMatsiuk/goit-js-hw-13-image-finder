@@ -2,8 +2,10 @@ import './sass/main.scss';
 import apiService from './js/apiService';
 
 import { error } from '../node_modules/@pnotify/core';
-import '../node_modules/@pnotify/core/dist/PNotify.css';
-import '../node_modules/@pnotify/core/dist/BrightTheme.css';
+import "../node_modules/@pnotify/core/dist/PNotify.css";
+import "../node_modules/@pnotify/core/dist/BrightTheme.css";
+// import '../node_modules/@pnotify/core/dist/PNotify.css';
+// import '../node_modules/@pnotify/core/dist/BrightTheme.css';
 import * as Confirm from '../node_modules/@pnotify/confirm';
 import '../node_modules/@pnotify/confirm/dist/PNotifyConfirm.css';
 
