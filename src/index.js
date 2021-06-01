@@ -12,7 +12,7 @@ import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 
 
 
-import hitsTpl from './templates/articles.hbs'
+import hitsTpl from './templates/articles.hbs';
 
 
 const refs = {
